@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GS Marketplace</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f7fa;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      max-width: 900px;
+      margin: auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #004080;
+      color: white;
+      padding: 10px 20px;
+    }
+    .menu {
+      position: relative;
+      cursor: pointer;
+      font-size: 24px;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      color: #333;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    .dropdown a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown a:hover {
+      background-color: #ddd;
+    }
+    .menu:hover .dropdown {
+      display: block;
+    }
+    h1, h2, h3 {
+      color: #004080;
+    }
+    button, select {
+      margin-top: 10px;
+    }
+    footer {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 40px;
+    }
+    .product, form, #searchInput {
+      background: white;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .product img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 8px 16px;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #005f99;
+    }
+    body.dark {
+      background: #12181b;
+      color: #ddd;
+    }
+    body.dark .product, body.dark form, body.dark #searchInput {
+      background: #1e2a35;
+      color: #ddd;
+    }
+    body.dark h1, body.dark h2, body.dark h3 {
+      color: #80b3ff;
+    }
+    .language-mode {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>GS Marketplace</h2>
+    <div class="menu">&#8942;
+      <div class="dropdown">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact Us</a>
+        <a href="#" onclick="document.getElementById('adminLogin').style.display='block';">Admin Panel</a>
+        <a href="#" onclick="alert('Logging out...')">Log Out</a>
+      </div>
+    </div>
+  </header>
+  <main id="home">
+    <div class="language-mode">
+      <select id="languageSelect">
+        <option value="en">English</option>
+        <option value="rw">Kinyarwanda</option>
+        <option value="fr">Français</option>
+        <option value="sw">Kiswahili</option>
+      </select>
+      <button id="toggleMode">Dark Mode</button>
+    </div>
+    <h1>GS Marketplace</h1>
+    <form id="productForm">
+      <h2>Add Product</h2>
+      <input type="text" id="title" placeholder="Product Name" required />
+      <input type="number" id="price" placeholder="Price" required />
+      <textarea id="description" placeholder="Description" required></textarea>
+      <input type="text" id="contact" placeholder="Phone or Email" required />
+      <input type="file" id="image" accept="image/*,video/*,audio/*" required />
+      <button type="submit">Post</button>
+    </form>
+    <section class="product-list">
+      <h2>Available Products</h2>
+      <input type="text" id="searchInput" placeholder="Search product..." />
+      <div id="productsContainer"></div>
+    </section>
+    <section id="about">
+      <h3>About Us</h3>
+      <p>GS Marketplace connects local buyers and sellers. This platform supports multiple languages, dark mode, and media uploads including images, video, and audio.</p>
+    </section>
+    <section id="contact">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>Email: gsmarket@example.com</li>
+        <li>Phone: +250 788 123 456</li>
+      </ul>
+    </section>
+    <section id="adminLogin" style="display:none;">
+      <h2>Admin Login</h2>
+      <input type="password" id="adminPass" placeholder="Enter Admin Password" />
+      <button onclick="loginAdmin()">Login</button>
+      <p id="adminError" style="color:red;"></p>
+    </section>
+    <section id="adminPanel" style="display:none;">
+      <h2>Admin Panel</h2>
+      <h3>Product Review</h3>
+      <div id="adminProducts"></div><h3>Registered Accounts</h3>
+  <table border="1" width="100%">
+    <thead>
+      <tr><th>#</th><th>Username</th><th>Contact</th></tr>
+    </thead>
+    <tbody id="accountTable"></tbody>
+  </table>
+</section>
+
+  </main>
+  <footer>
+    <p>&copy; 2025 GS Marketplace</p>
+  </footer>
+  <script>
+    const translations = { /* ... existing translations object ... */ };const languageSelect = document.getElementById('languageSelect');
+const toggleModeBtn = document.getElementById('toggleMode');
+const productForm = document.getElementById('productForm');
+const container = document.getElementById('productsContainer');
+const searchInput = document.getElementById('searchInput');
+
+function setLanguage(lang) { /* ... existing setLanguage ... */ }
+
+function displayProducts(filter = '') { /* ... existing displayProducts ... */ }
+
+productForm.addEventListener('submit', e => { /* ... form submit logic ... */ });
+
+function deleteProduct(index) {
+  const products = JSON.parse(localStorage.getItem('products')) || [];
+  products.splice(index, 1);
+  localStorage.setItem('products', JSON.stringify(products));
+  displayProducts();
+}
+
+searchInput.addEventListener('input', () => displayProducts(searchInput.value));
+
+toggleModeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  toggleModeBtn.textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
+});
+
+window.onload = () => {
+  const lang = localStorage.getItem('lang') || 'en';
+  languageSelect.value = lang;
+  setLanguage(lang);
+  displayProducts();
+};
+
+languageSelect.addEventListener('change', () => {
+  setLanguage(languageSelect.value);
+});
+
+function loginAdmin() {
+  const pass = document.getElementById("adminPass").value;
+  if (pass === "Egide@1315") {
+    document.getElementById("adminLogin").style.display = "none";
+    document.getElementById("adminPanel").style.display = "block";
+    showAdminProducts();
+    listAccounts();
+  } else {
+    document.getElementById("adminError").textContent = "You haven't access in this section";
+  }
+}
+
+function showAdminProducts() {
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  const adminDiv = document.getElementById("adminProducts");
+  adminDiv.innerHTML = "";
+  products.forEach((p, i) => {
+    const item = document.createElement("div");
+    item.className = "product";
+    item.innerHTML = `<strong>${p.title}</strong> - ${p.price} FRW<br>${p.description}<br>Contact: ${p.contact}<br><button onclick="deleteProduct(${i}); showAdminProducts();">Delete</button>`;
+    adminDiv.appendChild(item);
+  });
+}
+
+function listAccounts() {
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  const tbody = document.getElementById("accountTable");
+  tbody.innerHTML = "";
+  let seen = new Set();
+  let count = 1;
+  products.forEach(p => {
+    const key = `${p.contact}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      const row = `<tr><td>${count++}</td><td>${p.title}</td><td>${p.contact}</td></tr>`;
+      tbody.innerHTML += row;
+    }
+  });
+}
+
+  </script>
+</body>
+</html>
